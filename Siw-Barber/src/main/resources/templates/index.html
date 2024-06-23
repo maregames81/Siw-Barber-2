@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IntroBarber</title>
-    <link rel="stylesheet" href="/css/index.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
 
     <!-- Header -->
     	<nav th:replace="fragments/base.html :: nav"></nav>
-
+    
     <!-- Carousel -->
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -21,21 +21,21 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="images/intro2.jpg" class="d-block w-100" alt="...">
+                <img src="images/intro9.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Benvenuti a IntroBarber</h5>
                     <p>Il miglior servizio di barberia in città.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="images/intro5.jpg" class="d-block w-100" alt="...">
+                <img src="images/intro2.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Servizi Professionali</h5>
                     <p>Taglio di capelli, rasatura tradizionale e altro.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="images/intro9.jpg" class="d-block w-100" alt="...">
+                <img src="images/intro5.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Prenota il tuo appuntamento</h5>
                     <p>Facile e veloce.</p>
@@ -53,37 +53,37 @@
     </div>
 
     <!-- Contenuto principale -->
-<div class="container main-content mt-5 mb-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="highlight">
-                <h2 class="text-center text-primary display-4 bold">Benvenuto da IntroBarber!</h2>
-                <p class="text-center lead">La tua barberia di fiducia per uomo, dove tradizione e innovazione si incontrano.</p>
+    <div class="container main-content mt-2 mb-3">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="highlight">
+                    <h2 class="text-center text-primary display-4 bold">Benvenuto da IntroBarber!</h2>
+                    <p class="text-center lead">La tua barberia di fiducia per uomo, dove tradizione e innovazione si incontrano.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-4 opening-hours">
+                <h3 class="text-primary">Orari di apertura</h3>
+                <p class="mb-4">Lunedì - Venerdì: 09:00 - 19:00</p>
+                <p class="mb-4">Sabato: 09:00 - 14:00</p>
+                <p class="mb-0">Domenica: Chiuso</p>
+            </div>
+            <div class="col-md-4 address mt-4 mt-md-0">
+                <h3 class="text-primary">Indirizzo</h3>
+                <p>Via Roma, 123, 00100 Roma, Italia</p>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-4 my-3 book-button">
+                <a href="#appuntamenti" class="btn btn-warning btn-lg btn-block p-2">Prenota il tuo appuntamento</a>
             </div>
         </div>
     </div>
-    <div class="row justify-content-center mt-4">
-        <div class="col-md-4 opening-hours">
-            <h3 class="text-primary">Orari di apertura</h3>
-            <p class="mb-4">Lunedì - Venerdì: 09:00 - 19:00</p>
-            <p class="mb-4">Sabato: 09:00 - 14:00</p>
-            <p class="mb-0">Domenica: Chiuso</p>
-        </div>
-        <div class="col-md-4 address mt-4 mt-md-0">
-            <h3 class="text-primary">Indirizzo</h3>
-            <p>Via Roma, 123, 00100 Roma, Italia</p>
-        </div>
-    </div>
-    <div class="row justify-content-center mt-4">
-        <div class="col-md-4 my-3 book-button">
-            <a href="#appuntamenti" class="btn btn-warning btn-lg btn-block p-4 ">Prenota il tuo appuntamento</a>
-        </div>
-    </div>
-</div>
 
     <!-- Main Content -->
     <div class="container main-content">
-        <section id="servizi" class="container py-5">
+        <section id="servizi" class="container py-3">
             <h2>Servizi</h2>
             <div class="row">
                 <div class="col-md-4">
@@ -107,13 +107,13 @@
                         <div class="card-header bg-primary text-white">Modellatura</div>
                         <div class="card-body">
                             <p>Offriamo regolazione, rifinitura e styling della barba per un look impeccabile.</p>
-                        </div>                 
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
-    <section id="operatori" class="container py-5 mb-5">
+    <section id="operatori" class="container py-3 mb-5">
         <h2 class="mb-4">I nostri operatori</h2>
         <div class="row">
             <div class="col-md-4">
@@ -148,6 +148,7 @@
     
     <!-- Footer -->
    	<footer th:replace="fragments/base.html :: footer"></footer>
+   
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

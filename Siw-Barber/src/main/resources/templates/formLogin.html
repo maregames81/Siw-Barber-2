@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form con Bootstrap</title>
+  <link rel="stylesheet" href="/css/login.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+    	<nav th:replace="fragments/base.html :: nav"></nav>
+    
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="text-center">Inserisci i tuoi dati</h3>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" id="nome" placeholder="Inserisci il tuo nome">
+              </div>
+              <div class="form-group">
+                <label for="cognome">Cognome</label>
+                <input type="text" class="form-control" id="cognome" placeholder="Inserisci il tuo cognome">
+              </div>
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Inserisci il tuo username">
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Inserisci il tuo email">
+              </div>
+              <div class="form-group">
+                <label for="foto">Foto</label>
+                <input type="file" class="form-control-file" id="foto">
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Invia</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+   	<footer th:replace="fragments/base.html :: footer"></footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 @charset "UTF-8";
  body {
             background-color: #f8f9fa;
-            font-size: 16px; /* Impostazione della dimensione di base del font */
+            font-size: 12px; /* Dimensione di base del font ridotta del 30% */
         }
         h1, h2, h3, h4, h5, h6 {
             font-weight: bold;
@@ -13,7 +13,8 @@
             padding: 0;
         }
         .navbar-brand img {
-            height: 70px;
+            max-height: 40px; /* Altezza massima dell'immagine del logo */
+
             border: none; /* Rimuove il bordo attorno all'immagine */
         }
         .navbar-brand, .nav-link {
@@ -22,19 +23,16 @@
         .navbar-toggler {
             border: none; /* Rimuove il bordo del toggle button */
         }
-        .navbar-brand, .nav-link {
-            color: #fff !important;
-        }
-        .navbar-nav.nav-item{
-            font-size: medium;
+        .navbar-nav.nav-item {
+            font-size: small; /* Riduce la dimensione del font del menu di navigazione */
         }
         .carousel-item img {
-            height: 60vh;
+            height: 65vh;
             object-fit: cover;
         }
         .carousel-caption {
             background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
         }
         .main-content {
@@ -43,8 +41,17 @@
         .footer {
             background-color: #007bff;
             color: #fff;
-            padding: 20px 0;
+            padding:10px;
         }
         .footer a {
             color: #fff;
+        }
+        .display-4 {
+            font-size: 2.5rem; /* Riduzione della dimensione del font per la classe display-4 */
+        }
+        .lead {
+            font-size: 1.25rem; /* Riduzione della dimensione del font per la classe lead */
+        }
+        .btn-lg {
+            font-size: 0.875rem; /* Riduzione della dimensione del font per i pulsanti grandi */
         }

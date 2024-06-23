@@ -1,0 +1,25 @@
+@charset "UTF-8";
+body {
+      background-color: #f8f9fa; /* Colore di sfondo leggermente grigio */
+      padding-bottom: 50px; /* Spazio sotto il contenuto */
+    }
+    .card {
+      border-radius: 15px; /* Bordi arrotondati per la card */
+      box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Ombra leggera */
+    }
+    .card-header {
+      background-color: #007bff; /* Colore di sfondo dell'intestazione */
+      color: #fff; /* Testo bianco */
+      border-top-left-radius: 15px; /* Arrotondamento solo in alto a sinistra */
+      border-top-right-radius: 15px; /* Arrotondamento solo in alto a destra */
+    }
+    .card-body {
+      padding: 2rem; /* Padding interno */
+    }
+    .form-control {
+      border-radius: 10px; /* Bordi arrotondati per gli input */
+    }
+    .btn-primary {
+      border-radius: 10px; /* Bordi arrotondati per il bottone */
+    }
+  
