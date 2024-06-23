@@ -17,6 +17,9 @@ public class Servizio {
 	
 	@Column(nullable=false)
 	private String nome;
+	
+	@Column(nullable=false)
+	private float prezzo;
 
 	public Long getId() {
 		return id;
@@ -33,10 +36,21 @@ public class Servizio {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	
+	
+
+	public float getPrezzo() {
+		return prezzo;
+	}
+
+	public void setPrezzo(float prezzo) {
+		this.prezzo = prezzo;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(nome);
+		return Objects.hash(nome, prezzo);
 	}
 
 	@Override
@@ -48,8 +62,12 @@ public class Servizio {
 		if (getClass() != obj.getClass())
 			return false;
 		Servizio other = (Servizio) obj;
-		return Objects.equals(nome, other.nome);
+		return Objects.equals(nome, other.nome) && Float.floatToIntBits(prezzo) == Float.floatToIntBits(other.prezzo);
 	}
+	
+	
+	
+
 	
 	
 	
