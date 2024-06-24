@@ -1,7 +1,7 @@
 @charset "UTF-8"; 
-        body {
+        .login {
             font-family: Arial, sans-serif;
-            background-color: #e0f7fa;
+            background-color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -9,6 +9,7 @@
             margin: 0;
         }
         .login-container {
+            border: 2px solid #007bb5; /* Bordi solidi con spessore 2px e colore azzurro */
             background-color: #ffffff;
             padding: 20px;
             border-radius: 8px;
@@ -51,5 +52,17 @@
         }
         .login-container a:hover {
             text-decoration: underline;
+        }
+         .footer {
+            background-color: #007bff;
+            color: #fff;
+            padding:10px;
+        }
+          .footer a {
+            color: #fff;
+        }
+        
+         .navbar-brand, .nav-link {
+            color: #fff !important;
         }
    
