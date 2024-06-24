@@ -57,6 +57,7 @@ public class UserService {
         return result;
     }
 
+   
    @Transactional
 	public Iterable<User> findByRole(String adminRole) {
 		
