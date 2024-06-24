@@ -1,25 +1,55 @@
-@charset "UTF-8";
-body {
-      background-color: #f8f9fa; /* Colore di sfondo leggermente grigio */
-      padding-bottom: 50px; /* Spazio sotto il contenuto */
-    }
-    .card {
-      border-radius: 15px; /* Bordi arrotondati per la card */
-      box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Ombra leggera */
-    }
-    .card-header {
-      background-color: #007bff; /* Colore di sfondo dell'intestazione */
-      color: #fff; /* Testo bianco */
-      border-top-left-radius: 15px; /* Arrotondamento solo in alto a sinistra */
-      border-top-right-radius: 15px; /* Arrotondamento solo in alto a destra */
-    }
-    .card-body {
-      padding: 2rem; /* Padding interno */
-    }
-    .form-control {
-      border-radius: 10px; /* Bordi arrotondati per gli input */
-    }
-    .btn-primary {
-      border-radius: 10px; /* Bordi arrotondati per il bottone */
-    }
-  
+@charset "UTF-8"; 
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #007bb5;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .login-container input[type="submit"] {
+            background-color: #007bb5;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+        }
+        .login-container input[type="submit"]:hover {
+            background-color: #005f8c;
+
+        }
+        .login-container p {
+            margin: 10px 0 0;
+        }
+        .login-container a {
+            color: #007bb5;
+            text-decoration: none;
+        }
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+   
