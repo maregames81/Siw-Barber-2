@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,7 @@ import jakarta.validation.Valid;
 
 @Controller
 public class AuthenticationController {
+	
 
 	@Autowired
 	private CredentialsService credentialsService;
@@ -36,9 +39,13 @@ public class AuthenticationController {
    	private ServizioService serviceService;
     
     
-    @GetMapping("/")
+    @GetMapping(value="/")
     public String showIndex(Model model) {
     	
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication instanceof AnonymousAuthenticationToken) {
+	        return "index.html";
+		}
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
     	

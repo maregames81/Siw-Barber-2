@@ -1,24 +1,31 @@
 @charset "UTF-8";
-body {
+.main {
+	font-size:16px;
       background-color: #f8f9fa; /* Colore di sfondo leggermente grigio */
       padding-bottom: 50px; /* Spazio sotto il contenuto */
     }
     .card {
-      border-radius: 15px; /* Bordi arrotondati per la card */
-      box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Ombra leggera */
+    
+        border: 2px solid #007bb5; /* Bordo solido blu azzurro con spessore 2px */
+    padding: 20px; /* Spazio interno al container */
+    border-radius: 8px; /* Arrotondamento dei bordi */
+    box-shadow:  rgba(0, 123, 181, 0.5); 
+     
     }
-    .card-header {
-      background-color: #007bff; /* Colore di sfondo dell'intestazione */
-      color: #fff; /* Testo bianco */
-      border-top-left-radius: 15px; /* Arrotondamento solo in alto a sinistra */
-   d-body {
-      padding: 2rem; /* Padding interno */
-    }
+    .card-body h2 {
+            font-weight:normal;
+    
+      margin-bottom: 20px;
+            color: #007bb5;
+
     .for   border-top-right-radius: 15px; /* Arrotondamento solo in alto a destra */
     }
     .carm-control {
       border-radius: 10px; /* Bordi arrotondati per gli input */
+      
     }
     .btn-primary {
       border-radius: 10px; /* Bordi arrotondati per il bottone */
     }
+    
+    

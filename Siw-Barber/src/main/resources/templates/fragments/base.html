@@ -8,7 +8,7 @@
 <body>
  <nav th:fragment="nav"
       class="navbar navbar-expand-lg navbar-light bg-primary">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="images/intrologo.jpg" alt="IntroBarber Logo" height="50">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,16 +17,14 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link h6" href="#">Home</a>
+                    <a class="nav-link h6" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link h6" href="#">Servizi</a>
+                    <a class="nav-link h6" href="/indexPrenotazione">Prenota</a>
                 </li>
+              
                 <li class="nav-item">
-                    <a class="nav-link h6" href="#">Operatori</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link h6" href="#">Accedi</a>
+                    <a class="nav-link h6" href="/login">Accedi</a>
                 </li>
             </ul>
         </div>
