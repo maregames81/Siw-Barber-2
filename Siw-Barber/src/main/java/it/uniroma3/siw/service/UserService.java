@@ -58,12 +58,7 @@ public class UserService {
     }
 
    
-   @Transactional
-	public Iterable<User> findByRole(String adminRole) {
-		
-		return this.userRepository.findByRole(adminRole);
-	}
-	
+
 	
 	@Transactional
 	public void save(User user, MultipartFile file) throws IOException{

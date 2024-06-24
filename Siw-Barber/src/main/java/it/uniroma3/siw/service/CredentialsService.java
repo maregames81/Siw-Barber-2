@@ -52,4 +52,12 @@ public class CredentialsService {
 		this.credentialsRepository.deleteById(id);
 		
 	}
+	
+	
+	
+	@Transactional
+	public Iterable<Credentials> findByRole(String adminRole) {
+		
+		return this.credentialsRepository.findByRole(adminRole);
+	}
 }

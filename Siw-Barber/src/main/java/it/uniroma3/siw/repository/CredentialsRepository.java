@@ -14,4 +14,6 @@ public Optional<Credentials> findByUsername(String username);
 	public Optional<Credentials> findByUser(User user);
 
 	public boolean existsByUsername(String username);
+
+	public Iterable<Credentials> findByRole(String adminRole);
 }

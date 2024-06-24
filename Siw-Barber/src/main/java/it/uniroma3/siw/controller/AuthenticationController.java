@@ -1,6 +1,8 @@
 package it.uniroma3.siw.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,14 +41,24 @@ public class AuthenticationController {
     	
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+    	
+    	
+    	Iterable<Credentials> credenzialiAdmin= this.credentialsService.findByRole(Credentials.ADMIN_ROLE);
+		
+		List<User> operatori = new ArrayList<>();
+		for(Credentials c : credenzialiAdmin) {
+			operatori.add(c.getUser());
+		}
+    	
+    	
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
     		
     		model.addAttribute("servizi", this.serviceService.findAll());
-    		model.addAttribute("operatori", this.userService.findByRole(Credentials.ADMIN_ROLE));
+    		model.addAttribute("operatori",operatori);
             return "admin/index.html";
         }
     	model.addAttribute("servizi", this.serviceService.findAll());
-		model.addAttribute("operatori", this.userService.findByRole(Credentials.ADMIN_ROLE));
+		model.addAttribute("operatori", operatori);
         return "index.html";
     }
     
