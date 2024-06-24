@@ -6,4 +6,6 @@ import it.uniroma3.siw.model.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
+	Iterable<User> findByRole(String adminRole);
+
 }

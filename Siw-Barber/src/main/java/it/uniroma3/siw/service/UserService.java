@@ -53,4 +53,9 @@ public class UserService {
             result.add(user);
         return result;
     }
+
+	public Iterable<User> findByRole(String adminRole) {
+		
+		return this.userRepository.findByRole(adminRole);
+	}
 }

@@ -20,6 +20,9 @@ public class Servizio {
 	
 	@Column(nullable=false)
 	private float prezzo;
+	
+	@Column(nullable=false)
+	private String descrizione;
 
 	public Long getId() {
 		return id;
@@ -46,6 +49,19 @@ public class Servizio {
 
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
+	}
+	
+	
+	
+	
+	
+
+	public String getDescrizione() {
+		return descrizione;
+	}
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
 	}
 
 	@Override

@@ -20,7 +20,7 @@
             <h3 class="text-center">Inserisci i tuoi dati</h3>
           </div>
           <div class="card-body">
-            <form>
+            <form th:action="@{/register}" method="POST" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="nome">Nome</label>
                 <input type="text" class="form-control" id="nome" placeholder="Inserisci il tuo nome">
