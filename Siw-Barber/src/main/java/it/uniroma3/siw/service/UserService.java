@@ -1,6 +1,8 @@
 package it.uniroma3.siw.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.UserRepository;
@@ -57,5 +60,12 @@ public class UserService {
 	public Iterable<User> findByRole(String adminRole) {
 		
 		return this.userRepository.findByRole(adminRole);
+	}
+	
+	
+	@Transactional
+	public void save(User user, MultipartFile file) throws IOException{
+		user.setFoto(Base64.getEncoder().encodeToString(file.getBytes()));
+		this.userRepository.save(user);
 	}
 }
