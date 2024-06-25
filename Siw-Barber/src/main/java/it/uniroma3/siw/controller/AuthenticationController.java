@@ -46,6 +46,7 @@ public class AuthenticationController {
 		if (authentication instanceof AnonymousAuthenticationToken) {
 	        return "index.html";
 		}
+		
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
     	

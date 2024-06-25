@@ -65,7 +65,7 @@
 
         <div class="container mt-5">
             <h2 class="mb-4">Effettua una Prenotazione</h2>
-            <form>
+            <form th:action="@{/indexPrenotazione}" method="post">
                 <div class="form-group">
                     <label for="operator">Operatore</label>
                     <select class="form-control" id="operator" required>
@@ -82,6 +82,8 @@
                         <option value="Taglio di capelli">Taglio di capelli</option>
                         <option value="Colore capelli">Colore capelli</option>
                         <option value="Manicure">Manicure</option>
+                        <option th:each="servizio: ${servizi}"
+					th:value="${servizio.nome}" th:text="${servizio.nome}"></option>
                     </select>
                 </div>
                 <div class="form-group">
