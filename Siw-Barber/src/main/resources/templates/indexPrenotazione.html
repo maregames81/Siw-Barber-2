@@ -2,9 +2,34 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Index-Prenotazione</title>
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
+<!-- Header -->
+	<nav th:replace="fragments/base.html :: nav"></nav>
+	
+	
+	<div class="container main-content mt-2 mb-3">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="highlight">
+					<h2 class="text-center text-primary display-4 bold" 
+					th:text=" 'Benvenuto'+' '+${user.nome} + ' ' + ${user.cognome}">Benvenuto</h2>
+					<p class="text-center lead">La tua barberia di fiducia per
+						uomo, dove tradizione e innovazione si incontrano.</p>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+		<!-- Footer -->
+	<footer th:replace="fragments/base.html :: footer"></footer>
 
 </body>
 </html>

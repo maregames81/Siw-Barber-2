@@ -6,7 +6,7 @@
     }
     .card {
     
-        border: 2px solid #007bb5; /* Bordo solido blu azzurro con spessore 2px */
+    border: 2px solid #007bb5; /* Bordo solido blu azzurro con spessore 2px */
     padding: 20px; /* Spazio interno al container */
     border-radius: 8px; /* Arrotondamento dei bordi */
     box-shadow:  rgba(0, 123, 181, 0.5); 
