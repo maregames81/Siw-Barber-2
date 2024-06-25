@@ -8,6 +8,13 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="/css/index.css">
+<style>
+    .table-custom-header thead th {
+        background-color: #007bff;
+        color: white;
+    }
+</style>
+
 </head>
 <body>
 <!-- Header -->
@@ -25,8 +32,69 @@
 				</div>
 			</div>
 		</div>
-		
 	</div>
+	
+	
+        <div class="container mt-5">
+            <h2 class="mb-4">Le tue Prenotazioni</h2>
+            <table class="table table-bordered table-custom-header">
+                <thead>
+                    <tr>
+                        <th scope="col">Giorno</th>
+                        <th scope="col">Ora</th>
+                        <th scope="col">Servizio</th>
+                        <th scope="col">Operatore</th>
+                        <th scope="col">Azione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Esempio di riga di prenotazione -->
+                    <tr>
+                        <td>Lunedì, 1 Gen 2024</td>
+                        <td>10:00 AM</td>
+                        <td>Taglio di capelli</td>
+                        <td>Mario Rossi</td>
+                        <td>
+                            <button type="button" class="btn btn-danger btn-sm">Cancella</button>
+                        </td>
+                    </tr>
+                    <!-- Altre righe possono essere aggiunte dinamicamente -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container mt-5">
+            <h2 class="mb-4">Effettua una Prenotazione</h2>
+            <form>
+                <div class="form-group">
+                    <label for="operator">Operatore</label>
+                    <select class="form-control" id="operator" required>
+                        <option value="">Seleziona operatore</option>
+                        <option value="Mario Rossi">Mario Rossi</option>
+                        <option value="Luca Bianchi">Luca Bianchi</option>
+                        <option value="Anna Verdi">Anna Verdi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="service">Tipo di Servizio</label>
+                    <select class="form-control" id="service" required>
+                        <option value="">Seleziona servizio</option>
+                        <option value="Taglio di capelli">Taglio di capelli</option>
+                        <option value="Colore capelli">Colore capelli</option>
+                        <option value="Manicure">Manicure</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Giorno</label>
+                    <input type="date" class="form-control" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Orario</label>
+                    <input type="time" class="form-control" id="time" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Prenota</button>
+            </form>
+        </div>
 	
 		<!-- Footer -->
 	<footer th:replace="fragments/base.html :: footer"></footer>
