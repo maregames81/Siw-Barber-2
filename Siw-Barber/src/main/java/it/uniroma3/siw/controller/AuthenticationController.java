@@ -36,7 +36,7 @@ public class AuthenticationController {
 	private UserService userService;
     
     @Autowired
-   	private ServizioService serviceService;
+   	private ServizioService servizioService;
     
     
     @GetMapping(value="/")
@@ -60,11 +60,11 @@ public class AuthenticationController {
     	
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
     		
-    		model.addAttribute("servizi", this.serviceService.findAll());
+    		model.addAttribute("servizi", this.servizioService.findAll());
     		model.addAttribute("operatori",operatori);
             return "admin/index.html";
         }
-    	model.addAttribute("servizi", this.serviceService.findAll());
+    	model.addAttribute("servizi", this.servizioService.findAll());
 		model.addAttribute("operatori", operatori);
         return "index.html";
     }
