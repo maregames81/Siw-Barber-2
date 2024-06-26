@@ -7,13 +7,8 @@
     <link rel="stylesheet" href="/css/index.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .container {
-            max-width: 600px;
-        }
-
+       
+     
         .card-container {
             display: flex;
             flex-wrap: wrap;
@@ -31,10 +26,7 @@
         .btn-edit {
             align-self: flex-end;
         }
-        .table-custom-header thead th {
-	background-color: #007bff;
-	color: white;
-        }
+      
     </style>
 </head>
 <body>
@@ -42,23 +34,22 @@
 <!-- Header -->
 	<nav th:replace="fragments/base.html :: nav"></nav>
     
-    <div class="container main-content mt-2 mb-3">
+   <div class="container main-content mt-2 mb-3">
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="highlight">
 					<h2 class="text-center text-primary display-4 bold"
-						th:text=" 'Benvenuto'+' '+${user.nome} + ' ' + ${user.cognome}">Benvenuto</h2>
-					<p class="text-center lead">Monitora e gestisci le tue
-						prenotazioni da questa pagina .</p>
+						th:text=" 'Benvenuto'+' '+${user.nome} + ' ' + ${user.cognome}">Benvenuto valerio</h2>
+					<p class="text-center lead">Gestisci le prenotazioni con te e i servizi da questa pagina.</p>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div class="container mt-5">
-		<h2 class="mb-4">Le Prenotazioni Con Te</h2>
+		<h2 class="mb-4">Le tue Prenotazioni</h2>
 		<table class="table table-bordered table-custom-header">
-			<thead>
+			<thead class="bg-primary text-white">
 				<tr>
 					<th scope="col">Giorno</th>
 					<th scope="col">Ora</th>
@@ -82,18 +73,21 @@
 			</tbody>
 		</table>
 	</div>
+	
     <div class="container mt-5">
         <h2 class="mb-4 ">Inserisci Nuovo Servizio</h2>
+        
         <form>
-            <div class="form-group">
+        
+            <div class="mb-4">
                 <label for="serviceName">Nome del Servizio</label>
                 <input type="text" class="form-control" id="serviceName" placeholder="Nome del servizio" required>
             </div>
-            <div class="form-group">
+            <div class="mb-4">
                 <label for="serviceDescription">Descrizione</label>
                 <textarea class="form-control" id="serviceDescription" rows="3" placeholder="Descrizione del servizio" required></textarea>
             </div>
-            <div class="form-group">
+            <div class="mb-4">
                 <label for="servicePrice">Prezzo</label>
                 <input type="number" class="form-control" id="servicePrice" placeholder="Prezzo del servizio" step="0.01" required>
             </div>
