@@ -49,7 +49,7 @@ public class PrenotazioneController {
 
 		String username = userD.getUsername();    	
 		Credentials credentials= this.credentialsService.getCredentials(username);    	
-		User u = credentials.getUser();
+		User cliente = credentials.getUser();
 
 		Iterable<Credentials> credenzialiAdmin= this.credentialsService.findByRole(Credentials.ADMIN_ROLE);
 
@@ -61,9 +61,9 @@ public class PrenotazioneController {
 
 
 		LocalDateTime attuale = LocalDateTime.now();
-		model.addAttribute("prenotazioni", this.prenotazioneService.findByDataGreaterThan(attuale));
+		model.addAttribute("prenotazioni", this.prenotazioneService.findByDataGreaterThanAndCliente(attuale,cliente));
 
-		model.addAttribute("user", u);
+		model.addAttribute("user", cliente);
 		model.addAttribute("operatori", operatori);
 		model.addAttribute("servizi", this.servizioService.findAll());
 		model.addAttribute("prenotazione", new Prenotazione());

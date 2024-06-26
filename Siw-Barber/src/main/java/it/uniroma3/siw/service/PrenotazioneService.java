@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.model.Prenotazione;
+import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.PrenotazioneRepository;
 
 @Service
@@ -34,8 +35,21 @@ public class PrenotazioneService {
 	
 	
 	@Transactional
-	public List<Prenotazione> findByDataGreaterThan(LocalDateTime data){
-		
+	public List<Prenotazione> findByDataGreaterThan(LocalDateTime data){	
 		return this.prenotazioneRepository.findByOrarioGreaterThan(data);
 	}
+	
+	@Transactional
+	public List<Prenotazione> findByDataGreaterThanAndOperatore(LocalDateTime data, User operatore){	
+		return this.prenotazioneRepository.findByOrarioGreaterThanAndOperatore(data, operatore);
+	}
+	
+	
+	@Transactional
+	public List<Prenotazione> findByDataGreaterThanAndCliente(LocalDateTime data, User cliente){	
+		return this.prenotazioneRepository.findByOrarioGreaterThanAndCliente(data, cliente);
+	}
+	
+	
+	
 }

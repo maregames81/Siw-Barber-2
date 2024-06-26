@@ -1,6 +1,7 @@
 package it.uniroma3.siw.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Servizio;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
+import it.uniroma3.siw.service.PrenotazioneService;
 import it.uniroma3.siw.service.ServizioService;
 import it.uniroma3.siw.service.UserService;
 import jakarta.validation.Valid;
@@ -38,6 +40,9 @@ public class AuthenticationController {
     
     @Autowired
    	private ServizioService servizioService;
+
+    @Autowired
+	private PrenotazioneService prenotazioneService;
     
     
     @GetMapping(value="/")
@@ -66,6 +71,10 @@ public class AuthenticationController {
     		model.addAttribute("operatori",operatori);
     		model.addAttribute("servizio", new Servizio());
     		model.addAttribute("user", credentials.getUser());
+    		
+    		LocalDateTime attuale = LocalDateTime.now();
+    		model.addAttribute("prenotazioni", this.prenotazioneService.findByDataGreaterThan(attuale));
+    		
             return "admin/indexOperatore.html";
         }
     	model.addAttribute("servizi", this.servizioService.findAll());
@@ -87,6 +96,11 @@ public class AuthenticationController {
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
     		model.addAttribute("user", credentials.getUser());
     		model.addAttribute("servizio", new Servizio());
+    		
+    		
+    		LocalDateTime attuale = LocalDateTime.now();
+    		model.addAttribute("prenotazioni", this.prenotazioneService.findByDataGreaterThanAndOperatore(attuale,credentials.getUser()));
+    		
             return "admin/indexOperatore.html";
         }
         return "index.html";
