@@ -1,5 +1,8 @@
 package it.uniroma3.siw.service;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,5 +30,12 @@ public class PrenotazioneService {
 	@Transactional
 	public void save(Prenotazione prenotazione) {
 		this.prenotazioneRepository.save(prenotazione);		
+	}
+	
+	
+	@Transactional
+	public List<Prenotazione> findByDataGreaterThan(LocalDateTime data){
+		
+		return this.prenotazioneRepository.findByOrarioGreaterThan(data);
 	}
 }

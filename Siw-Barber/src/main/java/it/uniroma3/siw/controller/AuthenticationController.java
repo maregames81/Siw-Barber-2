@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Credentials;
+import it.uniroma3.siw.model.Servizio;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.ServizioService;
@@ -63,7 +64,9 @@ public class AuthenticationController {
     		
     		model.addAttribute("servizi", this.servizioService.findAll());
     		model.addAttribute("operatori",operatori);
-            return "admin/index.html";
+    		model.addAttribute("servizio", new Servizio());
+    		model.addAttribute("user", credentials.getUser());
+            return "admin/indexOperatore.html";
         }
     	model.addAttribute("servizi", this.servizioService.findAll());
 		model.addAttribute("operatori", operatori);
@@ -82,7 +85,9 @@ public class AuthenticationController {
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "admin/index.html";
+    		model.addAttribute("user", credentials.getUser());
+    		model.addAttribute("servizio", new Servizio());
+            return "admin/indexOperatore.html";
         }
         return "index.html";
     }

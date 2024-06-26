@@ -77,19 +77,19 @@
     <div class="container mt-5">
         <h2 class="mb-4 ">Inserisci Nuovo Servizio</h2>
         
-        <form>
+        <form th:action="@{/newServizio}" method="post">
         
             <div class="mb-4">
                 <label for="serviceName">Nome del Servizio</label>
-                <input type="text" class="form-control" id="serviceName" placeholder="Nome del servizio" required>
+                <input type="text" class="form-control" id="serviceName" placeholder="Nome del servizio" th:field="${servizio.nome}" required>
             </div>
             <div class="mb-4">
                 <label for="serviceDescription">Descrizione</label>
-                <textarea class="form-control" id="serviceDescription" rows="3" placeholder="Descrizione del servizio" required></textarea>
+                <textarea class="form-control" id="serviceDescription" rows="3" placeholder="Descrizione del servizio" th:field="${servizio.descrizione}" name="descrizione" required></textarea>
             </div>
             <div class="mb-4">
                 <label for="servicePrice">Prezzo</label>
-                <input type="number" class="form-control" id="servicePrice" placeholder="Prezzo del servizio" step="0.01" required>
+                <input type="number" class="form-control" id="servicePrice" placeholder="Prezzo del servizio" step="0.01" th:field="${servizio.prezzo}" required>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Aggiungi Servizio</button>
         </form>

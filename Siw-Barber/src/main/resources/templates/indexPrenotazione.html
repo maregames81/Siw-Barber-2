@@ -38,11 +38,11 @@
 			</thead>
 			<tbody>
 				<!-- Esempio di riga di prenotazione -->
-				<tr>
-					<td>Lunedì, 1 Gen 2024</td>
-					<td>10:00 AM</td>
-					<td>Taglio di capelli</td>
-					<td>Mario Rossi</td>
+				<tr th:each="pren: ${prenotazioni}">
+					<td th:text="${pren.orario.toLocalDate()}" ></td>
+					<td th:text="${pren.orario.toLocalTime()}"></td>
+					<td th:text="${pren.servizio.nome}"></td>
+					<td th:text="${pren.operatore.nome} + ' ' + ${pren.operatore.cognome}"></td>
 					<td>
 						<button type="button" class="btn btn-danger btn-sm">Disdici</button>
 					</td>
@@ -57,31 +57,34 @@
 		<form th:action="@{/indexPrenotazione}" method="post">
 			<div class="form-group">
 				<label for="operator">Operatore</label> <select class="form-control"
-					id="operator" required>
+					id="operator" name="IdOperatore" required>
 					<option value="">Seleziona operatore</option>
 					<option value="Mario Rossi">Mario Rossi</option>
 					<option value="Luca Bianchi">Luca Bianchi</option>
 					<option value="Anna Verdi">Anna Verdi</option>
+					<option th:each="operatore: ${operatori}" th:value="${operatore.id}"
+						th:text="${operatore.nome} + ' ' + ${operatore.cognome}"></option>
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="service">Tipo di Servizio</label> <select
-					class="form-control" id="service" required>
+					class="form-control" id="service" name="IdServizio" required>
 					<option value="">Seleziona servizio</option>
 					<option value="Taglio di capelli">Taglio di capelli</option>
 					<option value="Colore capelli">Colore capelli</option>
 					<option value="Manicure">Manicure</option>
-					<option th:each="servizio: ${servizi}" th:value="${servizio.nome}"
+					<option th:each="servizio: ${servizi}" th:value="${servizio.id}"
 						th:text="${servizio.nome}"></option>
 				</select>
 			</div>
             <div class="form-group">
                 <label for="date-select">Seleziona una data:</label>
-                <input type="date" id="date-select" name="date" class="form-control">
+                <input type="date" id="date-select" class="form-control" 
+                		name="dataPren" required>
             </div>
 			<div class="form-group">
 			<label for="time">Orario</label> 
-			<select class="form-control" id="time" required>
+			<select class="form-control" id="time" name="orarioPren" required>
 					<option value="">Seleziona orario</option>
 					<option value="08:00">08:00</option>
 				<option value="09:00">09:00</option>

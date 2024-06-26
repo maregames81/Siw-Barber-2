@@ -57,6 +57,19 @@ public class Prenotazione {
 	public void setOperatore(User operatore) {
 		this.operatore = operatore;
 	}
+	
+	
+	
+	
+	
+
+	public Servizio getServizio() {
+		return servizio;
+	}
+
+	public void setServizio(Servizio servizio) {
+		this.servizio = servizio;
+	}
 
 	public LocalDateTime getOrario() {
 		return orario;

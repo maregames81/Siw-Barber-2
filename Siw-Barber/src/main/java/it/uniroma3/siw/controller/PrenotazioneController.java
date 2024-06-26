@@ -1,5 +1,8 @@
 package it.uniroma3.siw.controller;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +14,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Prenotazione;
+import it.uniroma3.siw.model.Servizio;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.PrenotazioneService;
@@ -55,7 +60,8 @@ public class PrenotazioneController {
 
 
 
-
+		LocalDateTime attuale = LocalDateTime.now();
+		model.addAttribute("prenotazioni", this.prenotazioneService.findByDataGreaterThan(attuale));
 
 		model.addAttribute("user", u);
 		model.addAttribute("operatori", operatori);
@@ -68,18 +74,36 @@ public class PrenotazioneController {
 
 	@PostMapping("/indexPrenotazione")
 	public String newPrenotazione(@Valid @ModelAttribute("prenotazione") Prenotazione p,BindingResult bindingResult,
-			@ModelAttribute("userDetails") UserDetails userD, Model model) {
+			@ModelAttribute("userDetails") UserDetails userD,
+			@RequestParam("IdOperatore") Long idOperatore,
+			@RequestParam("IdServizio") Long idServizio,
+			@RequestParam("dataPren") LocalDate data,
+			@RequestParam("orarioPren") LocalTime orario, Model model) {
 
+		//Settaggio del cliente prenotante
 		String username = userD.getUsername();
 		User u= credentialsService.getCredentials(username).getUser();
-
 		p.setCliente(u);
 
-		if(!bindingResult.hasErrors()) {
-			this.prenotazioneService.save(p);
-		}
+		//Settaggio operatore della prenotazione
+		User operatore= this.userService.getUser(idOperatore);
+		p.setOperatore(operatore);
 
-		return "";
+		//Settaggio servizio
+		Servizio s= this.servizioService.findById(idServizio);
+		p.setServizio(s);
+
+		//Settaggio orario e data
+		p.setOrario(LocalDateTime.of(data, orario));
+
+
+		this.prenotazioneService.save(p);
+
+
+
+
+
+		return "redirect:/indexPrenotazione";
 	}
 
 }
