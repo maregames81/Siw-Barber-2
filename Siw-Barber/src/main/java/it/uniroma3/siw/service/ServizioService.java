@@ -38,11 +38,18 @@ public class ServizioService {
 		return this.servizioRepository.findByNome(nome);
 	}
 
+	@Transactional
 	public void updatePrezzo(Long id, float prezzo) {
 		// TODO Auto-generated method stub
 		Servizio servizio= this.findById(id);
 		servizio.setPrezzo(prezzo);
 		servizioRepository.save(servizio);
 
+	}
+
+	@Transactional
+	public boolean existByNome(String nome) {
+		
+		return this.servizioRepository.existsByNome(nome);
 	}
 }
