@@ -50,6 +50,11 @@ public class PrenotazioneService {
 		return this.prenotazioneRepository.findByOrarioGreaterThanAndCliente(data, cliente);
 	}
 	
+	@Transactional
+	public void delete(Long id) {
+		this.prenotazioneRepository.deleteById(id);
+	}
+	
 	
 	
 }

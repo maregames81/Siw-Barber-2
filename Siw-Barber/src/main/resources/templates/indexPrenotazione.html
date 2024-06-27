@@ -44,7 +44,9 @@
 					<td th:text="${pren.servizio.nome}"></td>
 					<td th:text="${pren.operatore.nome} + ' ' + ${pren.operatore.cognome}"></td>
 					<td>
+						<a th:href="@{'/disdiciPrenotazione/' + ${pren.id}}">
 						<button type="button" class="btn btn-danger btn-sm">Disdici</button>
+						</a>
 					</td>
 				</tr>
 			</tbody>

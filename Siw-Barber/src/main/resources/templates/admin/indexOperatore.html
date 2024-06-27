@@ -49,7 +49,9 @@
 					<td th:text="${pren.servizio.nome}"></td>
 					<td th:text="${pren.cliente.nome} + ' ' + ${pren.cliente.cognome}"></td>
 					<td>
+						<a th:href="@{'/disdiciPrenotazioneOperatore/' + ${pren.id}}">
 						<button type="button" class="btn btn-danger btn-sm">Disdici</button>
+						</a>					
 					</td>
 				</tr>
 			</tbody>
@@ -130,7 +132,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form id="editPriceForm">
+					<form th:action="@{/modificaPrezzo}" method="post" id="editPriceForm">
 						<div class="form-group">
 							<label for="serviceName">Nome del Servizio</label> <input
 								type="text" class="form-control" id="serviceName" readonly>

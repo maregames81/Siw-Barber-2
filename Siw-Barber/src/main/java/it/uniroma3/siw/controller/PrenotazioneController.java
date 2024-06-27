@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -84,6 +85,7 @@ public class PrenotazioneController {
 		String username = userD.getUsername();
 		User u= credentialsService.getCredentials(username).getUser();
 		p.setCliente(u);
+		
 
 		//Settaggio operatore della prenotazione
 		User operatore= this.userService.getUser(idOperatore);
@@ -99,11 +101,25 @@ public class PrenotazioneController {
 
 		this.prenotazioneService.save(p);
 
-
-
-
-
 		return "redirect:/indexPrenotazione";
+	}
+	
+	
+	@GetMapping("/disdiciPrenotazione/{id}")
+	public String disdiciPrenotazione(@PathVariable("id") Long idP, Model model) {
+		
+		this.prenotazioneService.delete(idP);
+		
+		return "redirect:/indexPrenotazione";
+	}
+	
+	
+	@GetMapping("/disdiciPrenotazioneOperatore/{id}")
+	public String disdiciPrenotazioneOperatore(@PathVariable("id") Long idP, Model model) {
+		
+		this.prenotazioneService.delete(idP);
+		
+		return "redirect:/";
 	}
 
 }
