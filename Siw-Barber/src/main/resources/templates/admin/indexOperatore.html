@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inserisci Nuovo Servizio</title>
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/indexOperatore.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inserisci Nuovo Servizio</title>
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/indexOperatore.css">
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	rel="stylesheet">
 </head>
 <body>
 
-<!-- Header -->
+	<!-- Header -->
 	<nav th:replace="fragments/base.html :: nav"></nav>
-    
-   <div class="container main-content mt-2 mb-3">
+
+	<div class="container main-content mt-2 mb-3">
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="highlight">
 					<h2 class="text-center text-primary display-4 bold"
-						th:text=" 'Benvenuto'+' '+${user.nome} + ' ' + ${user.cognome}">Benvenuto valerio</h2>
-					<p class="text-center lead">Gestisci le prenotazioni con te e i servizi da questa pagina.</p>
+						th:text=" 'Benvenuto'+' '+${user.nome} + ' ' + ${user.cognome}">Benvenuto
+						valerio</h2>
+					<p class="text-center lead">Gestisci le prenotazioni con te e i
+						servizi da questa pagina.</p>
 				</div>
 			</div>
 		</div>
@@ -40,7 +44,7 @@
 			<tbody>
 				<!-- Esempio di riga di prenotazione -->
 				<tr th:each="pren: ${prenotazioni}">
-					<td th:text="${pren.orario.toLocalDate()}" ></td>
+					<td th:text="${pren.orario.toLocalDate()}"></td>
 					<td th:text="${pren.orario.toLocalTime()}"></td>
 					<td th:text="${pren.servizio.nome}"></td>
 					<td th:text="${pren.cliente.nome} + ' ' + ${pren.cliente.cognome}"></td>
@@ -51,98 +55,128 @@
 			</tbody>
 		</table>
 	</div>
-	
-    <div class="container mt-5">
-        <h2 class="mb-4 ">Inserisci Nuovo Servizio</h2>
-        
-        <form th:action="@{/newServizio}" method="post">
-        
-            <div class="mb-4">
-                <label for="serviceName">Nome del Servizio</label>
-                <input type="text" class="form-control" id="serviceName" placeholder="Nome del servizio" th:field="${servizio.nome}" required>
-            </div>
-            <div class="mb-4">
-                <label for="serviceDescription">Descrizione</label>
-                <textarea class="form-control" id="serviceDescription" rows="3" placeholder="Descrizione del servizio" th:field="${servizio.descrizione}" name="descrizione" required></textarea>
-            </div>
-            <div class="mb-4">
-                <label for="servicePrice">Prezzo</label>
-                <input type="number" class="form-control" id="servicePrice" placeholder="Prezzo del servizio" step="0.01" th:field="${servizio.prezzo}" required>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Aggiungi Servizio</button>
-        </form>
-    </div>
-    
-    
-    <div class="container mt-5 mb-5 py-3">
-        <h2 class="mb-4 ">Servizi Disponibili </h2>
-        <div class="card-container">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Taglio di capelli</h5>
-                    <p class="card-text">Un taglio di capelli professionale per un look alla moda.</p>
-                    <p class="card-text"><strong>Prezzo:</strong> €25.00</p>
-                    <button type="button" class="btn btn-primary btn-edit" data-toggle="modal" data-target="#editPriceModal" data-service="Taglio di capelli" data-price="25.00">Modifica Prezzo</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Footer -->
+
+	<div class="container mt-5">
+		<h2 class="mb-4 ">Inserisci Nuovo Servizio</h2>
+
+		<form th:action="@{/newServizio}" method="post">
+
+			<div class="mb-4">
+				<label for="serviceName">Nome del Servizio</label> <input
+					type="text" class="form-control" id="serviceName"
+					placeholder="Nome del servizio" th:field="${servizio.nome}"
+					required>
+			</div>
+			<div class="mb-4">
+				<label for="serviceDescription">Descrizione</label>
+				<textarea class="form-control" id="serviceDescription" rows="3"
+					placeholder="Descrizione del servizio"
+					th:field="${servizio.descrizione}" name="descrizione" required></textarea>
+			</div>
+			<div class="mb-4">
+				<label for="servicePrice">Prezzo</label> <input type="number"
+					class="form-control" id="servicePrice"
+					placeholder="Prezzo del servizio" step="0.01"
+					th:field="${servizio.prezzo}" required>
+			</div>
+			<button type="submit" class="btn btn-primary btn-block">Aggiungi
+				Servizio</button>
+		</form>
+	</div>
+
+	<div class="container main-content">
+		<section id="servizi" class="container py-3">
+			<h2>Servizi</h2>
+			<div class="row mt-4">
+				<div class="col-md-4 mb-3" th:each="servizio : ${servizi}">
+					<div class="card">
+						<div class="card-header bg-primary text-white">
+							<h5 class="card-title mb-0" th:text="${servizio.nome}">Nome
+								Servizio</h5>
+						</div>
+						<div class="card-body">
+							<p class="card-text" th:text="${servizio.descrizione}">Descrizione
+								del servizio.</p>
+							<p class="card-text">
+								<strong th:text="'€'+' '+ ${servizio.prezzo}"> Prezzo</strong>
+								</p>
+						<p><button type="button" class="btn btn-primary btn-edit"
+									data-toggle="modal" data-target="#editPriceModal"
+									th:data-service="${servizio.nome}" th:data-price="${servizio.prezzo}">Modifica
+									Prezzo</button>
+							</p>
+
+					</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- Footer -->
 	<footer th:replace="fragments/base.html :: footer"></footer>
 
-    <!-- Modal per modificare il prezzo -->
-    <div class="modal fade" id="editPriceModal" tabindex="-1" aria-labelledby="editPriceModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editPriceModalLabel">Modifica Prezzo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="editPriceForm">
-                        <div class="form-group">
-                            <label for="serviceName">Nome del Servizio</label>
-                            <input type="text" class="form-control" id="serviceName" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="servicePrice">Prezzo</label>
-                            <input type="number" class="form-control" id="servicePrice" step="0.01" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Salva Modifiche</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+	<!-- Modal per modificare il prezzo -->
+	<div class="modal fade" id="editPriceModal" tabindex="-1"
+		aria-labelledby="editPriceModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editPriceModalLabel">Modifica
+						Prezzo</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="editPriceForm">
+						<div class="form-group">
+							<label for="serviceName">Nome del Servizio</label> <input
+								type="text" class="form-control" id="serviceName" readonly>
+						</div>
+						<div class="form-group">
+							<label for="servicePrice">Prezzo</label> <input type="number"
+								class="form-control" id="servicePrice" step="0.01" required>
+						</div>
+						<button type="submit" class="btn btn-primary">Salva
+							Modifiche</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-    <!-- Bootstrap JS and dependencies (jQuery and Popper.js) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $('#editPriceModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            var service = button.data('service'); // Extract info from data-* attributes
-            var price = button.data('price');
+	<!-- Bootstrap JS and dependencies (jQuery and Popper.js) -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script>
+		$('#editPriceModal').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget); // Button that triggered the modal
+			var service = button.data('service'); // Extract info from data-* attributes
+			var price = button.data('price');
 
-            var modal = $(this);
-            modal.find('.modal-title').text('Modifica Prezzo per ' + service);
-            modal.find('.modal-body #serviceName').val(service);
-            modal.find('.modal-body #servicePrice').val(price);
-        });
+			var modal = $(this);
+			modal.find('.modal-title').text('Modifica Prezzo per ' + service);
+			modal.find('.modal-body #serviceName').val(service);
+			modal.find('.modal-body #servicePrice').val(price);
+		});
 
-        $('#editPriceForm').on('submit', function (event) {
-            event.preventDefault();
-            var serviceName = $('#serviceName').val();
-            var servicePrice = $('#servicePrice').val();
-            // Qui puoi aggiungere il codice per salvare il nuovo prezzo nel database
-            alert('Prezzo per ' + serviceName + ' aggiornato a €' + servicePrice);
-            $('#editPriceModal').modal('hide');
-        });
-    </script>
+		$('#editPriceForm').on(
+				'submit',
+				function(event) {
+					event.preventDefault();
+					var serviceName = $('#serviceName').val();
+					var servicePrice = $('#servicePrice').val();
+					// Qui puoi aggiungere il codice per salvare il nuovo prezzo nel database
+					alert('Prezzo per ' + serviceName + ' aggiornato a €'
+							+ servicePrice);
+					$('#editPriceModal').modal('hide');
+				});
+	</script>
 </body>
 </html>

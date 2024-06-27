@@ -105,7 +105,8 @@ public class AuthenticationController {
     		
     		LocalDateTime attuale = LocalDateTime.now();
     		model.addAttribute("prenotazioni", this.prenotazioneService.findByDataGreaterThanAndOperatore(attuale,credentials.getUser()));
-    		
+        	model.addAttribute("servizi", this.servizioService.findAll());
+
             return "admin/indexOperatore.html";
         }
     	model.addAttribute("servizi", this.servizioService.findAll());
