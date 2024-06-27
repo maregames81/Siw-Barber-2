@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>Inserisci Nuovo Servizio</title>
 <link rel="stylesheet" href="/css/index.css">
 <link rel="stylesheet" href="/css/indexOperatore.css">
@@ -42,7 +44,6 @@
 				</tr>
 			</thead>
 			<tbody>
-				<!-- Esempio di riga di prenotazione -->
 				<tr th:each="pren: ${prenotazioni}">
 					<td th:text="${pren.orario.toLocalDate()}"></td>
 					<td th:text="${pren.orario.toLocalTime()}"></td>
@@ -86,102 +87,49 @@
 		</form>
 	</div>
 
-	<div class="container main-content">
-		<section id="servizi" class="container py-3">
-			<h2>Servizi</h2>
-			<div class="row mt-4">
-				<div class="col-md-4 mb-3" th:each="servizio : ${servizi}">
-					<div class="card">
-						<div class="card-header bg-primary text-white">
-							<h5 class="card-title mb-0" th:text="${servizio.nome}">Nome
-								Servizio</h5>
-						</div>
-						<div class="card-body">
-							<p class="card-text" th:text="${servizio.descrizione}">Descrizione
-								del servizio.</p>
-							<p class="card-text">
-								<strong th:text="'€'+' '+ ${servizio.prezzo}"> Prezzo</strong>
-								</p>
-						<p><button type="button" class="btn btn-primary btn-edit"
-									data-toggle="modal" data-target="#editPriceModal"
-									th:data-service="${servizio.nome}" th:data-price="${servizio.prezzo}">Modifica
-									Prezzo</button>
-							</p>
+<div class="container main-content">
+    <section id="servizi" class="container py-3">
+        <h2>Servizi</h2>
+        <div class="row mt-4">
+            <div class="col-md-4 mb-3" th:each="servizio : ${servizi}">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0" th:text="${servizio.nome}">Nome Servizio</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text" th:text="${servizio.descrizione}">Descrizione del servizio.</p>
+                        <p class="card-text">
+                            <strong th:text="'€' + ${servizio.prezzo}"> Prezzo</strong>
+                        </p>
+                        <div>
+                                                <hr class="mt-4 bg-primary">
+                        </div>
+                        
+                         <h5>Modifica prezzo</h5>
+                         <form th:action="@{/admin/modificaPrezzo }"method="POST">
+                            <div class="form-group">
+                                <input type="hidden" name="idServizio" th:value="${servizio.id}">
+                            </div>
+                            <div class="form-group">
+                                <label for="servicePrice">Nuovo Prezzo</label>
+                                <input type="number" class="form-control" id="servicePrice" name="nuovoPrezzo" step="0.01" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Salva</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 
-					</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
+    <!-- Footer -->
+    <footer th:replace="fragments/base.html :: footer"></footer>
 
-	<!-- Footer -->
-	<footer th:replace="fragments/base.html :: footer"></footer>
-
-	<!-- Modal per modificare il prezzo -->
-	<div class="modal fade" id="editPriceModal" tabindex="-1"
-		aria-labelledby="editPriceModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="editPriceModalLabel">Modifica
-						Prezzo</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form th:action="@{/modificaPrezzo}" method="post" id="editPriceForm">
-						<div class="form-group">
-							<label for="serviceName">Nome del Servizio</label> <input
-								type="text" class="form-control" id="serviceName" readonly>
-						</div>
-						<div class="form-group">
-							<label for="servicePrice">Prezzo</label> <input type="number"
-								class="form-control" id="servicePrice" step="0.01"
-								name="nuovoPrezzo" required>
-						</div>
-						
-						<input type="hidden" name="idServizio" th:value="${servizio.id}">
-						<button type="submit" class="btn btn-primary">Salva
-							Modifiche</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<!-- Bootstrap JS and dependencies (jQuery and Popper.js) -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<script>
-		$('#editPriceModal').on('show.bs.modal', function(event) {
-			var button = $(event.relatedTarget); // Button that triggered the modal
-			var service = button.data('service'); // Extract info from data-* attributes
-			var price = button.data('price');
-
-			var modal = $(this);
-			modal.find('.modal-title').text('Modifica Prezzo per ' + service);
-			modal.find('.modal-body #serviceName').val(service);
-			modal.find('.modal-body #servicePrice').val(price);
-		});
-
-		$('#editPriceForm').on(
-				'submit',
-				function(event) {
-					event.preventDefault();
-					var serviceName = $('#serviceName').val();
-					var servicePrice = $('#servicePrice').val();
-					// Qui puoi aggiungere il codice per salvare il nuovo prezzo nel database
-					alert('Prezzo per ' + serviceName + ' aggiornato a €'
-							+ servicePrice);
-					$('#editPriceModal').modal('hide');
-				});
-	</script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+     
 </body>
 </html>
