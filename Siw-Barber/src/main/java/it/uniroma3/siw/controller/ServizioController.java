@@ -15,6 +15,8 @@ import it.uniroma3.siw.model.Servizio;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.ServizioService;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class ServizioController {
@@ -30,14 +32,25 @@ public class ServizioController {
 	public String newServizio(@Valid @ModelAttribute("servizio") Servizio servizio,BindingResult bindingResult,
 			Model model) {
 		
-		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-		
-		
-		
 			this.servizioService.save(servizio);
-		
 		
 		return "redirect:/";
 	}
+	
+	
+	
+	@PostMapping("/modificaPrezzo")
+	public String modificaPrezzo(@RequestParam("idServizio") Long idS,
+								@RequestParam("nuovoPrezzo") float newPrezzo, Model model) {
+		
+		
+		Servizio s= this.servizioService.findById(idS);
+		System.out.println(s.getNome());
+		s.setPrezzo(newPrezzo);
+		
+		this.servizioService.save(s);
+		
+		return "redirect:/";
+	}
+	
 }
