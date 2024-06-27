@@ -35,10 +35,7 @@ public class ServizioController {
 		
 		
 		
-		if(!bindingResult.hasErrors()) {
 			this.servizioService.save(servizio);
-		}
-		
 		
 		
 		return "redirect:/";

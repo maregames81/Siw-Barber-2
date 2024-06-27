@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Servizio;
 import it.uniroma3.siw.model.User;
@@ -44,31 +43,36 @@ public class AuthenticationController {
     @Autowired
 	private PrenotazioneService prenotazioneService;
     
+    private List<User> trovaOperatori() {
+
+	    	Iterable<Credentials> credenzialiAdmin= this.credentialsService.findByRole(Credentials.ADMIN_ROLE);
+
+	    	List<User> operatori = new ArrayList<>();
+			for(Credentials c : credenzialiAdmin) {
+				operatori.add(c.getUser());
+			}
+		
+		return operatori;
+	}
+    
     
     @GetMapping(value="/")
     public String showIndex(Model model) {
     	
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (authentication instanceof AnonymousAuthenticationToken) {
+    	if (authentication instanceof AnonymousAuthenticationToken) {
+			model.addAttribute("servizi", this.servizioService.findAll());
+    		model.addAttribute("operatori",this.trovaOperatori());
 	        return "index.html";
 		}
 		
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
     	
-    	
-    	Iterable<Credentials> credenzialiAdmin= this.credentialsService.findByRole(Credentials.ADMIN_ROLE);
-		
-		List<User> operatori = new ArrayList<>();
-		for(Credentials c : credenzialiAdmin) {
-			operatori.add(c.getUser());
-		}
-    	
-    	
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
     		
     		model.addAttribute("servizi", this.servizioService.findAll());
-    		model.addAttribute("operatori",operatori);
+    		model.addAttribute("operatori",this.trovaOperatori());
     		model.addAttribute("servizio", new Servizio());
     		model.addAttribute("user", credentials.getUser());
     		
@@ -77,8 +81,9 @@ public class AuthenticationController {
     		
             return "admin/indexOperatore.html";
         }
+    	
     	model.addAttribute("servizi", this.servizioService.findAll());
-		model.addAttribute("operatori", operatori);
+		model.addAttribute("operatori",this.trovaOperatori());
         return "index.html";
     }
     
@@ -103,6 +108,8 @@ public class AuthenticationController {
     		
             return "admin/indexOperatore.html";
         }
+    	model.addAttribute("servizi", this.servizioService.findAll());
+		model.addAttribute("operatori",this.trovaOperatori());
         return "index.html";
     }
     

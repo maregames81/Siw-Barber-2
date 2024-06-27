@@ -47,7 +47,6 @@
 						<button type="button" class="btn btn-danger btn-sm">Disdici</button>
 					</td>
 				</tr>
-				<!-- Altre righe possono essere aggiunte dinamicamente -->
 			</tbody>
 		</table>
 	</div>
@@ -59,9 +58,6 @@
 				<label for="operator">Operatore</label> <select class="form-control"
 					id="operator" name="IdOperatore" required>
 					<option value="">Seleziona operatore</option>
-					<option value="Mario Rossi">Mario Rossi</option>
-					<option value="Luca Bianchi">Luca Bianchi</option>
-					<option value="Anna Verdi">Anna Verdi</option>
 					<option th:each="operatore: ${operatori}" th:value="${operatore.id}"
 						th:text="${operatore.nome} + ' ' + ${operatore.cognome}"></option>
 				</select>
@@ -70,9 +66,6 @@
 				<label for="service">Tipo di Servizio</label> <select
 					class="form-control" id="service" name="IdServizio" required>
 					<option value="">Seleziona servizio</option>
-					<option value="Taglio di capelli">Taglio di capelli</option>
-					<option value="Colore capelli">Colore capelli</option>
-					<option value="Manicure">Manicure</option>
 					<option th:each="servizio: ${servizi}" th:value="${servizio.id}"
 						th:text="${servizio.nome}"></option>
 				</select>

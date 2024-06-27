@@ -82,7 +82,9 @@
 		</div>
 		<div class="row justify-content-center mt-4">
 			<div class="col-md-4 my-3 book-button">
-				<a href="/indexPrenotazione" class="btn btn-warning btn-lg btn-block p-2">Prenota il tuo appuntamento</a>
+				<a href="/indexPrenotazione"
+					class="btn btn-warning btn-lg btn-block p-2">Prenota il tuo
+					appuntamento</a>
 			</div>
 		</div>
 	</div>
@@ -91,38 +93,19 @@
 	<div class="container main-content">
 		<section id="servizi" class="container py-3">
 			<h2>Servizi</h2>
-			<div class="row">
-
-				<Section th:each="servizio: ${servizi}">
-
-					<div class="col-md-4">
-						<div class="card mb-3">
-							<div class="card-header bg-primary text-white" th:text="${servizio.nome}">Taglio di
-								capelli</div>
-							<div class="card-body">
-								<p th:text="${servizio.descrizione}">Realizziamo tagli classici, moderni e personalizzati
-									secondo le tue esigenze.</p>
-									<p th:text="${servizio.prezzo}">14.50</p>
-							</div>
+			<div class="row mt-4">
+				<div class="col-md-4 mb-3" th:each="servizio : ${servizi}">
+					<div class="card">
+						<div class="card-header bg-primary text-white">
+							<h5 class="card-title mb-0" th:text="${servizio.nome}">Nome
+								Servizio</h5>
 						</div>
-					</div>
-
-				</Section>
-				<div class="col-md-4">
-					<div class="card mb-3">
-						<div class="card-header bg-primary text-white">Barba</div>
 						<div class="card-body">
-							<p>Offriamo regolazione, rifinitura e styling della barba per
-								un look impeccabile.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card mb-3">
-						<div class="card-header bg-primary text-white">Modellatura</div>
-						<div class="card-body">
-							<p>Offriamo regolazione, rifinitura e styling della barba per
-								un look impeccabile.</p>
+							<p class="card-text" th:text="${servizio.descrizione}">Descrizione
+								del servizio.</p>
+							<p class="card-text">
+								<strong th:text="'€'+' '+ ${servizio.prezzo}"> Prezzo</strong>
+							</p>
 						</div>
 					</div>
 				</div>
@@ -130,27 +113,21 @@
 		</section>
 	</div>
 
-	<section id="operatori" class="container py-3 mb-5">
-
-		<h2 class="mb-4">I nostri operatori</h2>
-
-		<div class="row">
-
-			<Section th:each="operatore: ${operatori }">
-
-				<div class="col-md-4">
-					<div class="card mb-3">
-					      <img th:src="*{'data:image/jpeg;base64,'+{operatore.foto}}" class="card.img-top " alt="foto operatore" >
-						  <div class="card-header bg-primary text-white" th:text="${operatore.nome}">Nome Operatore</div>
+	<div class="container main-content">
+		<section id="operatori" class="container py-3">
+			<h2>Operatori</h2>
+			<div class="row mt-4">
+				<div class="col-md-4 mb-3" th:each="operatore : ${operatori}">
+					<div class="card">
+						<img class="card-img-top" th:src="*{'data:image/jpeg;base64,'+{operatore.foto}}">
+						<div class="card-body">
+							<h5 class="card-title" th:text="${operatore.nome}+ ' '+ ${operatore.nome} ">Nome Operatore</h5>
+						</div>
 					</div>
 				</div>
-
-			</Section>
-			
-		</div>
-		
-	</section>
-
+			</div>
+		</section>
+	</div>
 	<!-- Footer -->
 	<footer th:replace="fragments/base.html :: footer"></footer>
 

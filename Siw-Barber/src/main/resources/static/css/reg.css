@@ -5,6 +5,7 @@ body {
 }
 
 .card1 {
+	font-family: Arial, sans-serif;
 	border: 2px solid #007bb5;
 	/* Bordo solido blu azzurro con spessore 2px */
 	box-shadow: rgba(0, 123, 181, 0.5);
