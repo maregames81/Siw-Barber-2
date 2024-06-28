@@ -54,6 +54,12 @@ public class PrenotazioneService {
 	public void delete(Long id) {
 		this.prenotazioneRepository.deleteById(id);
 	}
+
+	@Transactional
+	public boolean existByOrarioAndOperatore(LocalDateTime orario, User operatore) {
+		// TODO Auto-generated method stub
+		return this.prenotazioneRepository.existsByOrarioAndOperatore(orario,operatore);
+	}
 	
 	
 	

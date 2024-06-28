@@ -15,4 +15,6 @@ public interface PrenotazioneRepository extends CrudRepository<Prenotazione, Lon
 	List<Prenotazione> findByOrarioGreaterThanAndOperatoreOrderByOrarioAsc(LocalDateTime data, User operatore);
 	
 	List<Prenotazione> findByOrarioGreaterThanAndClienteOrderByOrarioAsc(LocalDateTime data, User cliente);
+
+	boolean existsByOrarioAndOperatore(LocalDateTime orario, User operatore);
 }

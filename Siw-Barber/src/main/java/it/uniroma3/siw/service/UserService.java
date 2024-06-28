@@ -65,4 +65,11 @@ public class UserService {
 		user.setFoto(Base64.getEncoder().encodeToString(file.getBytes()));
 		this.userRepository.save(user);
 	}
+	
+	
+	@Transactional
+	public boolean existByEmail(String email) {
+
+		return this.userRepository.existsByEmail(email);
+	}
 }

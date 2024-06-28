@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.uniroma3.siw.controller.validator.PrenotazioneValidator;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Prenotazione;
 import it.uniroma3.siw.model.Servizio;
@@ -43,6 +45,24 @@ public class PrenotazioneController {
 	@Autowired
 	private PrenotazioneService prenotazioneService;
 
+	@Autowired
+	private PrenotazioneValidator prenotazioneValidator;
+	
+	
+	
+	
+	private List<User> trovaOperatori() {
+
+    	Iterable<Credentials> credenzialiAdmin= this.credentialsService.findByRole(Credentials.ADMIN_ROLE);
+
+    	List<User> operatori = new ArrayList<>();
+		for(Credentials c : credenzialiAdmin) {
+			operatori.add(c.getUser());
+		}
+	
+	return operatori;
+}
+
 
 
 	@GetMapping("/indexPrenotazione")
@@ -52,12 +72,6 @@ public class PrenotazioneController {
 		Credentials credentials= this.credentialsService.getCredentials(username);    	
 		User cliente = credentials.getUser();
 
-		Iterable<Credentials> credenzialiAdmin= this.credentialsService.findByRole(Credentials.ADMIN_ROLE);
-
-		List<User> operatori = new ArrayList<>();
-		for(Credentials c : credenzialiAdmin) {
-			operatori.add(c.getUser());
-		}
 
 
 
@@ -65,7 +79,7 @@ public class PrenotazioneController {
 		model.addAttribute("prenotazioni", this.prenotazioneService.findByDataGreaterThanAndCliente(attuale,cliente));
 
 		model.addAttribute("user", cliente);
-		model.addAttribute("operatori", operatori);
+		model.addAttribute("operatori", this.trovaOperatori());
 		model.addAttribute("servizi", this.servizioService.findAll());
 		model.addAttribute("prenotazione", new Prenotazione());
 
@@ -85,7 +99,7 @@ public class PrenotazioneController {
 		String username = userD.getUsername();
 		User u= credentialsService.getCredentials(username).getUser();
 		p.setCliente(u);
-		
+
 
 		//Settaggio operatore della prenotazione
 		User operatore= this.userService.getUser(idOperatore);
@@ -99,26 +113,45 @@ public class PrenotazioneController {
 		p.setOrario(LocalDateTime.of(data, orario));
 
 
-		this.prenotazioneService.save(p);
+		this.prenotazioneValidator.validate(p,bindingResult);
+
+		//Se non ci sono errori allora salvo
+		if(!bindingResult.hasErrors()) {
+			this.prenotazioneService.save(p);
+			return "redirect:/indexPrenotazione";
+		}
+		
+		//Se sono qui significa che ci sono errori quindi riaggiungo i vari elementi al model
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+    	User cliente = credentials.getUser();
+
+
+		LocalDateTime attuale = LocalDateTime.now();
+		model.addAttribute("prenotazioni", this.prenotazioneService.findByDataGreaterThanAndCliente(attuale,cliente));
+
+		model.addAttribute("user", cliente);
+		model.addAttribute("operatori", this.trovaOperatori());
+		model.addAttribute("servizi", this.servizioService.findAll());
+    		
+		return "indexPrenotazione.html";
+	}
+
+
+	@GetMapping("/disdiciPrenotazione/{id}")
+	public String disdiciPrenotazione(@PathVariable("id") Long idP, Model model) {
+
+		this.prenotazioneService.delete(idP);
 
 		return "redirect:/indexPrenotazione";
 	}
-	
-	
-	@GetMapping("/disdiciPrenotazione/{id}")
-	public String disdiciPrenotazione(@PathVariable("id") Long idP, Model model) {
-		
-		this.prenotazioneService.delete(idP);
-		
-		return "redirect:/indexPrenotazione";
-	}
-	
-	
+
+
 	@GetMapping("/disdiciPrenotazioneOperatore/{id}")
 	public String disdiciPrenotazioneOperatore(@PathVariable("id") Long idP, Model model) {
-		
+
 		this.prenotazioneService.delete(idP);
-		
+
 		return "redirect:/";
 	}
 

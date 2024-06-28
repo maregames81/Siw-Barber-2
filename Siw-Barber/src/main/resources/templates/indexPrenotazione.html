@@ -94,6 +94,9 @@
 				<option value="18:00">18:00</option>
 				<option value="19:00">19:00</option>
 				</select>
+				
+				<span th:if="${#fields.hasErrors('prenotazione.orario')}"
+					th:errors="${prenotazione.orario}" th:style="'color:red'"></span>
 			</div>
 			<button type="submit" class="btn btn-primary px-5 mb-5">Prenota</button>
 		</form>
