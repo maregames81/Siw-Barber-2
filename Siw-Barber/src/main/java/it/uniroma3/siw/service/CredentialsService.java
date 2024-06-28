@@ -60,4 +60,10 @@ public class CredentialsService {
 		
 		return this.credentialsRepository.findByRole(adminRole);
 	}
+	
+	@Transactional
+	public boolean existByUsername(String username) {
+		
+		return this.credentialsRepository.existsByUsername(username);
+	}
 }

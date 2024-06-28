@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import it.uniroma3.siw.controller.validator.CredentialsValidator;
+import it.uniroma3.siw.controller.validator.UserValidator;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Servizio;
 import it.uniroma3.siw.model.User;
@@ -42,6 +45,12 @@ public class AuthenticationController {
 
     @Autowired
 	private PrenotazioneService prenotazioneService;
+    
+    @Autowired
+	private UserValidator userValidator;
+    
+    @Autowired
+	private CredentialsValidator credentialsValidator;
     
     private List<User> trovaOperatori() {
 
@@ -128,6 +137,11 @@ public class AuthenticationController {
     public String postRegister(@Valid @ModelAttribute("user") User user, BindingResult userBindingResult,
     		@Valid @ModelAttribute("credentials") Credentials credentials, BindingResult credentialsBindingResult,
     		@RequestParam("imageFile") MultipartFile imageFile, Model model ) throws IOException {
+    	
+    	
+    	
+    	this.userValidator.validate(user, userBindingResult);
+		this.credentialsValidator.validate(credentials, credentialsBindingResult);
     	
     	
     	if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
