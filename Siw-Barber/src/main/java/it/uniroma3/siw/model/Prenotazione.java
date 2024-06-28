@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Prenotazione {
@@ -31,7 +32,6 @@ public class Prenotazione {
 	@ManyToOne
 	private Servizio servizio;
 	
-	@NotBlank
 	private LocalDateTime orario;
 
 	public Long getId() {
@@ -57,10 +57,6 @@ public class Prenotazione {
 	public void setOperatore(User operatore) {
 		this.operatore = operatore;
 	}
-	
-	
-	
-	
 	
 
 	public Servizio getServizio() {

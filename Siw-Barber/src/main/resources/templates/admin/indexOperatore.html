@@ -86,14 +86,13 @@
 					placeholder="Prezzo del servizio" step="0.01"
 					th:field="${servizio.prezzo}" required>
 			</div>
-			<button type="submit" class="btn btn-primary btn-block">Aggiungi
-				Servizio</button>
+			<button type="submit" class="btn btn-primary btn-block">Aggiungi Servizio</button>
 		</form>
 	</div>
 
 <!-- cambia prezzo servizi esistenti -->
-<div class="container main-content">
-    <section id="servizi" class="container py-3">
+<div class="container  mt-5 mb-5">
+    <section id="servizi">
         <h2>Servizi</h2>
         <div class="row mt-4">
             <div class="col-md-4 mb-3" th:each="servizio : ${servizi}">

@@ -118,7 +118,7 @@
 				<div class="col-md-4 mb-3" th:each="operatore : ${operatori}">
 					<div class="card">
 						<img class="card-img-top" th:src="*{'data:image/jpeg;base64,'+{operatore.foto}}">
-						<div class="card-body">
+						<div class="card-body bg-primary text-white">
 							<h5 class="card-title" th:text="${operatore.nome}+ ' '+ ${operatore.nome} ">Nome Operatore</h5>
 						</div>
 					</div>
