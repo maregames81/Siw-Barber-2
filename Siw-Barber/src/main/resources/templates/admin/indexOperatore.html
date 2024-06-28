@@ -68,7 +68,9 @@
 				<label for="serviceName">Nome del Servizio</label> <input
 					type="text" class="form-control" id="serviceName"
 					placeholder="Nome del servizio" th:field="${servizio.nome}"
-					required>
+					required>	
+					<span th:if="${#fields.hasErrors('servizio.nome')}"
+					th:errors="${servizio.nome}" th:style="'color:red'"></span>
 			</div>
 			<div class="mb-4">
 				<label for="serviceDescription">Descrizione</label>
