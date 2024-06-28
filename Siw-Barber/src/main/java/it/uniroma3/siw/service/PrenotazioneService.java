@@ -36,18 +36,18 @@ public class PrenotazioneService {
 	
 	@Transactional
 	public List<Prenotazione> findByDataGreaterThan(LocalDateTime data){	
-		return this.prenotazioneRepository.findByOrarioGreaterThan(data);
+		return this.prenotazioneRepository.findByOrarioGreaterThanOrderByOrarioAsc(data);
 	}
 	
 	@Transactional
 	public List<Prenotazione> findByDataGreaterThanAndOperatore(LocalDateTime data, User operatore){	
-		return this.prenotazioneRepository.findByOrarioGreaterThanAndOperatore(data, operatore);
+		return this.prenotazioneRepository.findByOrarioGreaterThanAndOperatoreOrderByOrarioAsc(data, operatore);
 	}
 	
 	
 	@Transactional
 	public List<Prenotazione> findByDataGreaterThanAndCliente(LocalDateTime data, User cliente){	
-		return this.prenotazioneRepository.findByOrarioGreaterThanAndCliente(data, cliente);
+		return this.prenotazioneRepository.findByOrarioGreaterThanAndClienteOrderByOrarioAsc(data, cliente);
 	}
 	
 	@Transactional

@@ -62,8 +62,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="highlight">
-					<h2 class="text-center text-primary display-4 bold">Benvenuto
-						da IntroBarber!</h2>
+					<h2 class="text-center text-primary display-4 bold">Benvenuto da IntroBarber!</h2>
 					<p class="text-center lead">La tua barberia di fiducia per
 						uomo, dove tradizione e innovazione si incontrano.</p>
 				</div>
@@ -83,13 +82,13 @@
 		<div class="row justify-content-center mt-4">
 			<div class="col-md-4 my-3 book-button">
 				<a href="/indexPrenotazione"
-					class="btn btn-warning btn-lg btn-block p-2">Prenota il tuo
-					appuntamento</a>
+					class="btn btn-warning btn-lg btn-block p-2">
+					Prenota il tuo appuntamento</a>
 			</div>
 		</div>
 	</div>
 
-	<!-- Main Content -->
+<!-- servizi -->
 	<div class="container main-content">
 		<section id="servizi" class="container py-3">
 			<h2>Servizi</h2>
@@ -97,12 +96,10 @@
 				<div class="col-md-4 mb-3" th:each="servizio : ${servizi}">
 					<div class="card">
 						<div class="card-header bg-primary text-white">
-							<h5 class="card-title mb-0" th:text="${servizio.nome}">Nome
-								Servizio</h5>
+							<h5 class="card-title mb-0" th:text="${servizio.nome}">Nome Servizio</h5>
 						</div>
 						<div class="card-body">
-							<p class="card-text" th:text="${servizio.descrizione}">Descrizione
-								del servizio.</p>
+							<p class="card-text" th:text="${servizio.descrizione}">Descrizione del servizio.</p>
 							<p class="card-text">
 								<strong th:text="'€'+' '+ ${servizio.prezzo}"> Prezzo</strong>
 							</p>
@@ -113,6 +110,7 @@
 		</section>
 	</div>
 
+<!-- operatori -->
 	<div class="container main-content">
 		<section id="operatori" class="container py-3">
 			<h2>Operatori</h2>
@@ -128,8 +126,10 @@
 			</div>
 		</section>
 	</div>
+	
 	<!-- Footer -->
 	<footer th:replace="fragments/base.html :: footer"></footer>
+
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script

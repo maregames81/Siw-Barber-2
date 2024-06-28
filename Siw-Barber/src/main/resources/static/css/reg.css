@@ -1,35 +1,32 @@
 @charset "UTF-8";
 
 body {
-	background-color: #f8f9fa; /* Colore di sfondo leggermente grigio */
+	background-color: #f8f9fa; /* sfondo grigio */
 }
 
 .card1 {
 	font-family: Arial, sans-serif;
 	border: 2px solid #007bb5;
-	/* Bordo solido blu azzurro con spessore 2px */
 	box-shadow: rgba(0, 123, 181, 0.5);
 	margin-top: 40px;
-	border-radius: 15px; /* Bordi arrotondati per la card */
+	border-radius: 15px; 
 }
 
 .card-header {
-	background-color: white; /* Colore di sfondo dell'intestazione */
-	color: #007bff; /* Testo bianco */
+	background-color: white; 
+	color: #007bff; 
 	border-top-left-radius: 15px;
-	/* Arrotondamento solo in alto a sinistra */
 	border-top-right-radius: 15px;
-	/* Arrotondamento solo in alto a destra */
 }
 
 .card-body {
-	padding: 2rem; /* Padding interno */
+	padding: 2rem;
 }
 
 .list-group-item {
-	border: none; /* Rimuove il bordo dai list item */
+	border: none; 
 }
 
 .btn-primary {
-	border-radius: 10px; /* Bordi arrotondati per il bottone */
+	border-radius: 10px;
 }

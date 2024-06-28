@@ -23,7 +23,7 @@
 		</div>
 	</div>
 
-
+<!-- tabella prenotazioni -->
 	<div class="container mt-5">
 		<h2 class="mb-4">Le tue Prenotazioni</h2>
 		<table class="table table-bordered table-custom-header">
@@ -37,7 +37,6 @@
 				</tr>
 			</thead>
 			<tbody>
-				<!-- Esempio di riga di prenotazione -->
 				<tr th:each="pren: ${prenotazioni}">
 					<td th:text="${pren.orario.toLocalDate()}" ></td>
 					<td th:text="${pren.orario.toLocalTime()}"></td>
@@ -53,6 +52,7 @@
 		</table>
 	</div>
 
+<!-- effettua prenotazione -->
 	<div class="container mt-5">
 		<h2 class="mb-4">Effettua una Prenotazione</h2>
 		<form th:action="@{/indexPrenotazione}" method="post">

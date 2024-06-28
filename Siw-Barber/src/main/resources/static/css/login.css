@@ -1,6 +1,6 @@
 @charset "UTF-8"; 
 body {
-	background-color: #f8f9fa; /* Colore di sfondo leggermente grigio */
+	background-color: #f8f9fa; /*sfondo  grigio */
 }
      .login {
             font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@ body {
             margin: 0;
         }
         .login-container {
-            border: 2px solid #007bb5; /* Bordi solidi con spessore 2px e colore azzurro */
+            border: 2px solid #007bb5; 
             background-color: #ffffff;
             padding: 20px;
             border-radius: 8px;
@@ -55,4 +55,4 @@ body {
         }
         .login-container a:hover {
             text-decoration: underline;
-     
+            }

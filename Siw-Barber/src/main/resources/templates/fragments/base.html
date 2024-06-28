@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
+<!-- Header -->
 	<nav th:fragment="nav"
 		class="navbar navbar-expand-lg navbar-light bg-primary">
 		<a class="navbar-brand" href="/"> <img src="images/intrologo.jpg"
@@ -23,19 +24,19 @@
 					href="/indexPrenotazione">Prenota</a></li>
 					
 				<li class="nav-item" th:if="${userDetails}"> <span class="nav-link h6">|</span></li>
-				<li class="nav-item" th:if="${userDetails}"><a
-					class="nav-link h6" href="#" th:text="${userDetails.username}">NomeUtente</a>
+				<li class="nav-item" th:if="${userDetails}">
+				<a class="nav-link h6" href="#" th:text="${userDetails.username}">NomeUtente</a>
 				</li>
-				<li class="nav-item" th:if="${userDetails}"><a
-					class="nav-link h6" href="/logout">Logout</a></li>
-					
-				<li th:unless="${userDetails}" class="nav-item"><a
-					class="nav-link h6" href="/login">Accedi</a></li>
-
+				<li class="nav-item" th:if="${userDetails}">
+				<a class="nav-link h6" href="/logout">Logout</a></li>	
+				<li th:unless="${userDetails}" class="nav-item">
+				<a class="nav-link h6" href="/login">Accedi</a></li>
 			</ul>
 		</div>
 	</nav>
 
+
+<!-- footer -->
 	<footer th:fragment="footer" class="footer text-center">
 		<div class="container">
 			<p class="mb-0">© 2024 IntroBarber. Tutti i diritti riservati.</p>

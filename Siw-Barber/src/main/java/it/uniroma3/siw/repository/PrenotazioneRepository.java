@@ -10,9 +10,9 @@ import it.uniroma3.siw.model.User;
 
 public interface PrenotazioneRepository extends CrudRepository<Prenotazione, Long> {
 
-	List<Prenotazione> findByOrarioGreaterThan(LocalDateTime data);
+	List<Prenotazione> findByOrarioGreaterThanOrderByOrarioAsc(LocalDateTime data);
 	
-	List<Prenotazione> findByOrarioGreaterThanAndOperatore(LocalDateTime data, User operatore);
+	List<Prenotazione> findByOrarioGreaterThanAndOperatoreOrderByOrarioAsc(LocalDateTime data, User operatore);
 	
-	List<Prenotazione> findByOrarioGreaterThanAndCliente(LocalDateTime data, User cliente);
+	List<Prenotazione> findByOrarioGreaterThanAndClienteOrderByOrarioAsc(LocalDateTime data, User cliente);
 }
