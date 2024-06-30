@@ -40,7 +40,6 @@ public class ServizioService {
 
 	@Transactional
 	public void updatePrezzo(Long id, float prezzo) {
-		// TODO Auto-generated method stub
 		Servizio servizio= this.findById(id);
 		servizio.setPrezzo(prezzo);
 		servizioRepository.save(servizio);

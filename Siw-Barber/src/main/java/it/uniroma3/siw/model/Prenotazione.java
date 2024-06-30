@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,16 +21,16 @@ public class Prenotazione {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cliente_id")
 	private User cliente;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "operatore_id")
 	private User operatore;
 	
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Servizio servizio;
 	
 	private LocalDateTime orario;
