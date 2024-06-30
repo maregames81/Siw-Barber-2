@@ -1,7 +1,6 @@
 package it.uniroma3.siw.model;
 
 import java.util.Objects;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,22 +11,19 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Credentials {
 
-	
 	public static final String DEFAULT_ROLE = "DEFAULT";
 	public static final String ADMIN_ROLE = "ADMIN";
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
 	private String username;
-	
-	
+
 	private String password;
-	
-	
+
 	private String role;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 
