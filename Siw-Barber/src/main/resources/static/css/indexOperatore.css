@@ -3,7 +3,7 @@
 .card-container {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 1rem;
+	gap: 1rem; /*spazio tra righe e colonne */
 }
 
 .card {

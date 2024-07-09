@@ -92,7 +92,6 @@ public class ServizioController {
 
 
 		Servizio s= this.servizioService.findById(idS);
-		System.out.println(s.getNome());
 		s.setPrezzo(newPrezzo);
 
 		this.servizioService.save(s);

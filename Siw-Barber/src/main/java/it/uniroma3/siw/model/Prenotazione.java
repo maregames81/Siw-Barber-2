@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -33,6 +34,8 @@ public class Prenotazione {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Servizio servizio;
 	
+	@NotNull
+	@Future
 	private LocalDateTime orario;
 
 	public Long getId() {
@@ -93,8 +96,5 @@ public class Prenotazione {
 		return Objects.equals(cliente, other.cliente) && Objects.equals(operatore, other.operatore)
 				&& Objects.equals(orario, other.orario);
 	}
-	
-	
-	
 	
 }
